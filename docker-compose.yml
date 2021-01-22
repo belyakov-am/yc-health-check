@@ -1,13 +1,11 @@
 version: "3.8"
 
 services:
-  django:
-    build: .
-    command: python manage.py runserver 0.0.0.0:8000
-    volumes:
-      - ./src/:/app
+  postgres:
+    image: postgres:13-alpine
+    env_file:
+      - .env
     ports:
-      - "8000:8000"
+      - "5433:5432"
 
 volumes:
-  django:
