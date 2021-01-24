@@ -126,7 +126,7 @@ resource "yandex_vpc_subnet" "nat-public-subnet" {
 
 resource "yandex_vpc_subnet" "nat-subnet" {
   network_id     = yandex_vpc_network.hw2-network.id
-  v4_cidr_blocks = ["192.168.0.0/24"]
+  v4_cidr_blocks = ["172.16.0.0/24"]
   zone           = var.zone
   route_table_id = yandex_vpc_route_table.nat-table.id
   depends_on     = [yandex_vpc_network.hw2-network, yandex_vpc_route_table.nat-table]

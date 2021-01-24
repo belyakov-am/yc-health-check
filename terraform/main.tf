@@ -34,8 +34,7 @@ resource "yandex_vpc_network" "hw2-network" {
 
 resource "yandex_vpc_subnet" "hw2-subnet" {
   network_id = yandex_vpc_network.hw2-network.id
-  v4_cidr_blocks = [
-    "192.168.0.0/16"]
+  v4_cidr_blocks = ["192.168.0.0/16"]
   zone = var.zone
 }
 
