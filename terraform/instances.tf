@@ -1,8 +1,8 @@
 ############## SERVICE ##############
 
 resource "yandex_compute_instance" "healthchecker" {
-  name = "hw2-health-checker"
-  hostname = "hw2-health-checker"
+  name = "hw2-service"
+  hostname = "hw2-service"
   platform_id = "standard-v2"
   folder_id = var.folder_id
 
