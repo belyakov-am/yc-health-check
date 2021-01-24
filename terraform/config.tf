@@ -43,11 +43,10 @@ resource "yandex_vpc_subnet" "hw2-subnet" {
 
 resource "yandex_iam_service_account" "hw2-sa" {
   name = "hw2"
-  folder_id = var.folder_id
 }
 
-resource "yandex_iam_service_account_iam_binding" "hw2-b" {
-  service_account_id = yandex_iam_service_account.hw2-sa.id
+resource "yandex_resourcemanager_folder_iam_binding" "hw2-b" {
+  folder_id = var.folder_id
   role = "container-registry.images.puller"
   members = [
     "serviceAccount:${yandex_iam_service_account.hw2-sa.id}",
