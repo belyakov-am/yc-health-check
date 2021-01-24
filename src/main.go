@@ -39,8 +39,7 @@ func main() {
 	go func() {
 		secondsStr := os.Getenv("UPDATE_STATUS_TIME")
 		seconds, _ := strconv.ParseUint(secondsStr, 10, 64)
-		// TODO: get real IP
-		addr := "0.0.0.0"
+		addr := hc.GetInternalIP()
 
 		for _ = range time.Tick(time.Second * time.Duration(seconds)) {
 			log.Println("Status updated")

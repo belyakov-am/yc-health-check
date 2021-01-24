@@ -2,15 +2,15 @@ package healthcheck
 
 import (
 	"encoding/json"
-	"healthcheck/db"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
 	"strconv"
 	"time"
-)
 
-const layout string = "2021-01-23T22:00:00.000000"
+	"healthcheck/db"
+)
 
 // TODO: make json method for responses
 
@@ -30,6 +30,24 @@ type ErrorResp struct {
 
 type Service struct {
 	Manager *db.DatabaseManager
+}
+
+func GetInternalIP() (addr string) {
+	resp, err := http.Get("http://169.254.169.254/latest/meta-data/local-ipv4")
+	if err != nil {
+		log.Print("Error getting internal IP")
+		log.Fatal(err)
+	}
+
+	defer resp.Body.Close()
+
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		log.Print("Error reading internal IP body")
+		log.Fatal(err)
+	}
+
+	return string(body)
 }
 
 func (s *Service) HealthHandler(w http.ResponseWriter, r *http.Request) {
@@ -65,7 +83,7 @@ func (s *Service) HealthHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	resp := HealthResp{
-		Ip:       "0.0.0.0", // TODO: get real IP
+		Ip:       GetInternalIP(),
 		Services: statusesResp,
 	}
 	js, _ := json.Marshal(resp)
