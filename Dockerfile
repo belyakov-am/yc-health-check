@@ -21,6 +21,8 @@ RUN    apk update                                \
     && rm -rf /var/cache/apk/*
 
 COPY --from=builder /build/main .
+
 COPY bin/entrypoint.sh .
+COPY .env .
 
 ENTRYPOINT ["./entrypoint.sh"]
