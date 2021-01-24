@@ -36,7 +36,7 @@ type DatabaseManager struct {
 func NewDatabaseManager(database string, options string) DatabaseManager {
 	db, err := sqlx.Connect(database, options)
 	if err != nil {
-		log.Fatal(err)
+		log.Print(err)
 	}
 
 	return DatabaseManager{

@@ -20,6 +20,7 @@ func main() {
 	postgresDb := os.Getenv("POSTGRES_DB")
 	postgresUser := os.Getenv("POSTGRES_USER")
 	postgresPassword := os.Getenv("POSTGRES_PASSWORD")
+	port := os.Getenv("SERVICE_PORT")
 
 	options := fmt.Sprintf("host=%s port=%s dbname=%s user=%s password=%s sslmode=disable",
 		postgresHost, postgresPort, postgresDb, postgresUser, postgresPassword)
@@ -43,5 +44,5 @@ func main() {
 	}()
 
 	http.HandleFunc("/healthcheck", service.HealthHandler)
-	log.Fatal(http.ListenAndServe("localhost:8000", nil))
+	log.Fatal(http.ListenAndServe("0.0.0.0:" + port, nil))
 }
