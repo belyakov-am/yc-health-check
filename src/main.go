@@ -20,7 +20,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	
+
 	postgresHost := os.Getenv("POSTGRES_HOST")
 	postgresPort := os.Getenv("POSTGRES_PORT")
 	postgresDb := os.Getenv("POSTGRES_DB")
@@ -28,7 +28,7 @@ func main() {
 	postgresPassword := os.Getenv("POSTGRES_PASSWORD")
 	port := os.Getenv("SERVICE_PORT")
 
-	options := fmt.Sprintf("host=%s port=%s dbname=%s user=%s password=%s sslmode=disable",
+	options := fmt.Sprintf("host=%s port=%s dbname=%s user=%s password=%s sslmode=disable connect_timeout=1",
 		postgresHost, postgresPort, postgresDb, postgresUser, postgresPassword)
 
 	dbManager := db.NewDatabaseManager("postgres", options)

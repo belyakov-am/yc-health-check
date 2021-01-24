@@ -37,6 +37,8 @@ func (s *Service) HealthHandler(w http.ResponseWriter, r *http.Request) {
 
 	statuses, err := s.Manager.GetStatuses()
 	if err != nil {
+		log.Printf("Database is unavailable: %e", err)
+
 		resp := ErrorResp{"Database is unavailable"}
 		js, _ := json.Marshal(resp)
 		w.Header().Set("Content-Type", "application/json")
