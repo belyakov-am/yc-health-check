@@ -1,0 +1,7 @@
+spec:
+  containers:
+    - image: cr.yandex/crpt630qfi7s0ntbp783/hw2-nginx:1.0.2
+      securityContext:
+        privileged: true
+      stdin: true
+      tty: true

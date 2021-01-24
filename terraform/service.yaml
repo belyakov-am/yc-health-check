@@ -1,0 +1,7 @@
+spec:
+  containers:
+    - image: cr.yandex/crpt630qfi7s0ntbp783/hw2-service:1.0.3
+      securityContext:
+        privileged: true
+      stdin: true
+      tty: true

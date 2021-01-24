@@ -1,0 +1,7 @@
+spec:
+  containers:
+    - image: postgres:13-alpine
+      securityContext:
+        privileged: true
+      stdin: true
+      tty: true
