@@ -1,6 +1,6 @@
 spec:
   containers:
-    - image: postgres:13-alpine
+    - image: cr.yandex/crpt630qfi7s0ntbp783/hw2-postgres:1.0.0
       securityContext:
         privileged: true
       stdin: true
