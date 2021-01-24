@@ -1,0 +1,5 @@
+FROM postgres:13-alpine
+
+ENV POSTGRES_DB health
+ENV POSTGRES_USER health
+ENV POSTGRES_PASSWORD 783passRONG
