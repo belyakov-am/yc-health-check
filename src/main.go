@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"healthcheck/db"
+	"healthcheck/utils"
 	"log"
 	"net/http"
 	"os"
@@ -39,7 +40,7 @@ func main() {
 	go func() {
 		secondsStr := os.Getenv("UPDATE_STATUS_TIME")
 		seconds, _ := strconv.ParseUint(secondsStr, 10, 64)
-		addr := hc.GetInternalIP()
+		addr := utils.GetInternalIP()
 
 		for _ = range time.Tick(time.Second * time.Duration(seconds)) {
 			log.Println("Status updated")
