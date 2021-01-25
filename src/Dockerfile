@@ -3,11 +3,11 @@ FROM golang:alpine AS builder
 
 WORKDIR /build
 
-COPY src/go.mod .
-COPY src/go.sum .
+COPY go.mod .
+COPY go.sum .
 RUN go mod download
 
-COPY src/ .
+COPY . .
 
 RUN go build -o main .
 
@@ -22,7 +22,7 @@ RUN    apk update                                \
 
 COPY --from=builder /build/main .
 
-COPY bin/entrypoint.sh .
-COPY .env .
+COPY ../bin/entrypoint.sh .
+COPY ../.env .
 
 ENTRYPOINT ["./entrypoint.sh"]

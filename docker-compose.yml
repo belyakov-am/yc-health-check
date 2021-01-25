@@ -4,7 +4,7 @@ services:
   hw2-service:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: src/Dockerfile
     env_file:
       - .env
     depends_on:
