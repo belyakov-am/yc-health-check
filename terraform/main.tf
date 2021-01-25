@@ -36,6 +36,7 @@ resource "yandex_vpc_subnet" "hw2-subnet" {
   network_id = yandex_vpc_network.hw2-network.id
   v4_cidr_blocks = ["192.168.0.0/16"]
   zone = var.zone
+  route_table_id = yandex_vpc_route_table.nat-table.id
 }
 
 ############## ACCOUNT ##############
