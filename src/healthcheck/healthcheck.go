@@ -35,8 +35,8 @@ type Service struct {
 func GetInternalIP() (addr string) {
 	resp, err := http.Get("http://169.254.169.254/latest/meta-data/local-ipv4")
 	if err != nil {
-		log.Print("Error getting internal IP")
-		log.Fatal(err)
+		log.Print("Error getting internal IP from YC")
+		return "111.111.111.111"
 	}
 
 	defer resp.Body.Close()
